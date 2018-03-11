@@ -24,13 +24,7 @@ class Order < ApplicationRecord
   validates_inclusion_of :shipping_method, in: shipping_methods
 
   def shipping_charges
-    if ground?
-      0
-    elsif two_day?
-      (15.75).round(2)
-    elsif overnight?
-      (25).round(2)
-    end
+    "Shipping::Mode::#{shipping_method.capitalize}".constantize.new.rate
   end
 
   def total_product_prices
