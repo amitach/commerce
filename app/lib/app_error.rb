@@ -2,7 +2,7 @@
 # These errors should be configured in the errors.en.yml file inside of the 'error' section
 # After configuration, the error can be raised as follows.
 
-# raise ApplicationError::ImpsTransactionFailed as opposed to raise 'The IMPS transaction failed to process'
+# raise AppError::OrderCannotBeProcessed as opposed to raise 'Order cannot be processed'
 
 # This module should be used as the central point for raising custom errors so that errors
 # and their messages as well as integer codes are more easily manageable across the application.
