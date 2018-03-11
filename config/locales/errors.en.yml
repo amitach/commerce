@@ -12,3 +12,7 @@ en:
       code: 100
       action: :new
       message: 'There was a problem processing your order.'
+    cart_not_found:
+      code: 101
+      action: :new
+      message: 'Order cannot be processed, missing cart'

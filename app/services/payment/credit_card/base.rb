@@ -12,7 +12,7 @@ module Payment
         @card = opts[:card]
       end
 
-      def validate!
+      def validate
         raise NotImplementedError
       end
 
@@ -20,7 +20,7 @@ module Payment
         raise NotImplementedError
       end
 
-      def client!
+      def client
         raise NotImplementedError
       end
 

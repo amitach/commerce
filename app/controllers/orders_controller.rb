@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
         shipping_method: params[:order][:shipping_method]
     )
     if @order.valid?
-      OrderProcessor.new(@order).process!
+      OrderProcessor.new(@order, params).process!
       flash[:success] = I18n.t("response.order_created")
       redirect_to confirmation_orders_path
     else
@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     end
 
     def load_cart
-      @cart = current_user.try(:active_cart) || Cart.find(session[:cart_id])
+      @cart = current_user.try(:active_cart) || Cart.find_by_id(session[:cart_id])
+      raise AppError::CartNotFound if @cart.blank?
     end
 end

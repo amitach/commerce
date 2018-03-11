@@ -2,18 +2,18 @@ module Payment
   module CreditCard
     class ActiveMerchant < Base
 
-      def validate!
+      def validate
         raise AppError::CreditCardInvalid unless credit_card.valid?
       end
 
       def purchase!
-        unless client!.purchase(amount, credit_card, opts).success?
+        unless client.purchase(amount, credit_card, opts).success?
           raise AppError::CreditCardUnprocessable
         end
         true
       end
 
-      def client!
+      def client
         @client ||= ActiveMerchant::Billing::AuthorizeNetGateway.new(
           login: ENV["AUTHORIZE_LOGIN"],
           password: ENV["AUTHORIZE_PASSWORD"]
