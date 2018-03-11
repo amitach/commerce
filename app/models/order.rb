@@ -1,3 +1,4 @@
+# Order module implements the core business logic to calculate the price for an order
 class Order < ApplicationRecord
   belongs_to :cart
   has_many :cart_products, through: :cart
@@ -28,7 +29,9 @@ class Order < ApplicationRecord
   end
 
   def total_product_prices
-    products.sum(&:price)
+    sum = 0
+    products.map{|product| sum += (product.price * product.quantity) }
+    sum
   end
 
   def calculate_total_price

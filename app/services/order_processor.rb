@@ -11,7 +11,7 @@ class OrderProcessor
     begin
       order.update_attributes!(status: Order.statuses[:paid])
       order.post_order_process!
-    rescue StandardError => ex
+    rescue StandardError => _ex
       raise AppError::OrderCannotBeProcessed
     end
   end

@@ -16,6 +16,6 @@ product2 = Product.create!(price: 20, name: 'Bar')
 
 cart = Cart.create!(user: user)
 
-CartProduct.create!(product: product1, cart: cart)
-CartProduct.create!(product: product2, cart: cart)
+CartProduct.create!(product: product1, cart: cart, quantity: 3)
+CartProduct.create!(product: product2, cart: cart, quantity: 2)
 Order.create!(cart: cart, shipping_method: 'ground')
