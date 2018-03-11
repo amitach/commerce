@@ -1,3 +1,11 @@
+#
+# This module implements how a credit card is selected and handled
+# Uses strategy pattern to make a purchase
+#
+# Every derived class should implement the client/validate/purchase! methods
+# @params: amount, opts, card
+#
+# The card type is selected using command pattern
 module Payment
   module CreditCard
     class Base
