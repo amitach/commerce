@@ -16,6 +16,7 @@ class Order < ApplicationRecord
     end
   end
 
+  #including questionable and defining question_for will define the ? methods for all the attributes
   include Questionable
   question_for :status, statuses
   question_for :shipping_method, shipping_methods
