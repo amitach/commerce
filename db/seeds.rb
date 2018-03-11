@@ -10,7 +10,7 @@
   model.destroy_all
 end
 
-user = User.create!(name: 'John Doe')
+user = User.create!(name: 'John Doe', email: 'johndoe@example.com')
 product1 = Product.create!(price: 10, name: 'Foo')
 product2 = Product.create!(price: 20, name: 'Bar')
 

@@ -15,5 +15,5 @@ class Cart < ApplicationRecord
   include Questionable
   question_for :status, statuses
 
-  delegate :email, to :user
+  delegate :email, to: :user
 end
