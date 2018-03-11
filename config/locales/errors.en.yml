@@ -1,0 +1,14 @@
+en:
+  error:
+    credit_card_invalid:
+      code: 10
+      action: :new
+      message: 'The Credit Card is not valid.'
+    credit_card_unprocessable:
+      code: 50
+      action: :new
+      message: "We couldn't process your credit card."
+    order_cannot_be_processed:
+      code: 100
+      action: :new
+      message: 'There was a problem processing your order.'

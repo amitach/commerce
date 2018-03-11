@@ -1,0 +1,4 @@
+en:
+  response:
+    order_created: 'The order was placed successfully.'
+    order_failed: 'There was a problem processing your order. Please try again.'
