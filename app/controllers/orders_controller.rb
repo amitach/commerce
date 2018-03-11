@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :load_cart
 
   def create
-    @order = Order.create!(
+    @order = Order.create(
         cart:            @cart,
         shipping_method: params[:order][:shipping_method]
     )
