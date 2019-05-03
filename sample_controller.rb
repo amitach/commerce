@@ -1,3 +1,6 @@
+# Sample code that looks like this
+
+
 class OrdersController < ApplicationController
   before_action :get_cart
 
