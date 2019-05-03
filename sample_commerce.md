@@ -597,6 +597,8 @@ end
 
 Now onto the shipping modules
 
+Use of basic inheritance
+
 ```ruby
 module Shipping
   module Mode
