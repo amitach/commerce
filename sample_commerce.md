@@ -223,6 +223,12 @@ if credit_card.valid?
 
 ```
 
+## Now lets try to follow some coding conventions and techniques to sort of refactor the app and achieve the same thing.
+
+> SOME MAGIC
+
+## This is how the code looks now
+
 
 ```ruby
 class OrdersController < ApplicationController
