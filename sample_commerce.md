@@ -222,7 +222,34 @@ if credit_card.valid?
     end
 
 ```
+> And then there are some helper methods as well
 
+```ruby
+def order_params
+    params.require(:order).permit!
+  end
+
+  def get_card_type
+    length = params[:card_info][:card_number].size
+
+    if length == 15 && number =~ /^(34|37)/
+      "AMEX"
+    elsif length == 16 && number =~ /^6011/
+      "Discover"
+    elsif length == 16 && number =~ /^5[1-5]/
+      "MasterCard"
+    elsif (length == 13 || length == 16) && number =~ /^4/
+      "Visa"
+    else
+      "Unknown"
+    end
+  end
+
+  def get_cart
+    @cart = Cart.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+  end
+```
 ## Now lets try to follow some coding conventions and techniques to sort of refactor the app and achieve the same thing.
 
 > SOME MAGIC
