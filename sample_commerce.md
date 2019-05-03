@@ -381,3 +381,39 @@ class Cart < ApplicationRecord
   delegate :email, to: :user
 end
 ```
+
+The cart product join table
+```ruby
+class CartProduct < ApplicationRecord
+  belongs_to :cart
+  belongs_to :product
+
+  validates_presence_of :cart, :product
+end
+```
+
+
+Using service objects
+
+> app/services/order_processor.rb
+
+```ruby
+class OrderProcessor
+  attr_accessor :order
+
+  def initialize(order, params)
+    @order = order
+    @params = params
+  end
+
+  def process!
+    Payment::CreditCard::Context.new(order.total_price, @params).execute!
+    begin
+      order.update_attributes!(status: Order.statuses[:paid])
+      order.post_order_process!
+    rescue StandardError => _ex
+      raise AppError::OrderCannotBeProcessed
+    end
+  end
+end
+```
