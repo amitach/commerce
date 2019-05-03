@@ -304,7 +304,9 @@ end
 ```
 
 
-The user model looks like this
+The order model looks like this
+
+> We use associations, ORM callbacks
 
 ```ruby
 # Order module implements the core business logic to calculate the price for an order
