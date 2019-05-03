@@ -1,5 +1,12 @@
 # Sample code that looks like this
-
+## 1. Instantiate a new Order object.
+## 2. Add the items from the Cart record to the Order instance.
+## 3. Add shipping and tax to the total_price of the Order instance.
+## 4. Process the user's credit card
+## 5. Instantiate an ActiveMerchant client
+## 6. Using ActiveMerchant check whether the credit card information is valid, if invalid, we stop the transaction and display an error to the user
+## 7. If the credit card is valid, we charge the card via ActiveMerchant, if charge fails, we stop the transaction and display an error to the user
+## 8. Set the Order's status attribute to processed and save the Order
 
 class OrdersController < ApplicationController
   before_action :get_cart
