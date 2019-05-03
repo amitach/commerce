@@ -111,12 +111,45 @@ end
 
 
 ```
-# 1. Instantiate a new Order object.
-# 2. Add the items from the Cart record to the Order instance.
-# 3. Add shipping and tax to the total_price of the Order instance.
-# 4. Process the user's credit card
-# 5. Instantiate an ActiveMerchant client
-# 6. Using ActiveMerchant check whether the credit card information is valid, if invalid, we stop the transaction and display an error to the user
-# 7. If the credit card is valid, we charge the card via ActiveMerchant, if charge fails, we stop the transaction and display an error to the user
-# 8. Set the Order's status attribute to processed and save the Order
+> 1. Instantiate a new Order object.
+> 2. Add the items from the Cart record to the Order instance.
+> 3. Add shipping and tax to the total_price of the Order instance.
+> 4. Process the user's credit card
+> 5. Instantiate an ActiveMerchant client
+> 6. Using ActiveMerchant check whether the credit card information is valid, if invalid, we stop the transaction and display an error to the user
+> 7. If the credit card is valid, we charge the card via ActiveMerchant, if charge fails, we stop the transaction and display an error to the user
+> 8. Set the Order's status attribute to processed and save the Order
 
+
+
+```ruby
+class OrdersController < ApplicationController
+  before_action :load_cart
+
+  def create
+    @order = Order.create(
+        cart:            @cart,
+        shipping_method: params[:order][:shipping_method]
+    )
+    if @order.valid?
+      OrderProcessor.new(@order, params).process!
+      flash[:success] = I18n.t("response.order_created")
+      redirect_to confirmation_orders_path
+    else
+      flash[:error] = I18n.t("response.order_failed")
+      render :new
+    end
+  end
+
+  private
+
+    def order_params
+      params.require(:order).permit!
+    end
+
+    def load_cart
+      @cart = current_user.try(:active_cart) || Cart.find_by_id(session[:cart_id])
+      raise AppError::CartNotFound if @cart.blank?
+    end
+end
+```
