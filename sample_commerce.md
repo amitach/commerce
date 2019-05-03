@@ -594,3 +594,48 @@ module Payment
   end
 end
 ```
+
+Now onto the shipping modules
+
+```ruby
+module Shipping
+  module Mode
+    class Base
+      def rate
+        raise NotImplementedError, 'Ask the subclass for the rate'
+      end
+    end
+  end
+end
+
+module Shipping
+  module Mode
+    class Ground < Base
+      def rate
+        0
+      end
+    end
+  end
+end
+
+module Shipping
+  module Mode
+    class Overnight < Base
+      def rate
+        (25).round(2)
+      end
+    end
+  end
+end
+
+module Shipping
+  module Mode
+    class TwoDay < Base
+      def rate
+        (15.75).round(2)
+      end
+    end
+  end
+end
+
+```
