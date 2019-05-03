@@ -1,4 +1,10 @@
-# Sample code that looks like this
+# What will we do today?
+
+## We will look at a part of a sample application(typical commerce application)
+## The controller action is the order creation endpoint for the app
+
+
+# Following is the Sample code
 
 ```ruby
 class OrdersController < ApplicationController
