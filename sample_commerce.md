@@ -294,6 +294,8 @@ We will go through this step by step
 
 > Use associations / introduce new objects if necessary
 
+
+The user model looks like this
 ```ruby
 class User < ApplicationRecord
   has_many :carts
