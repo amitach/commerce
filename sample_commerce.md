@@ -1,10 +1,13 @@
 # What will we do today?
 
 ## We will look at a part of a sample application(typical commerce application)
-## The controller action is the order creation endpoint for the app
+## We will look at the refactored code and look into a couple of techniques to write the same thing
+
+
 
 
 # Following is the Sample code
+# The controller action is the order creation endpoint for the app
 
 ```ruby
 class OrdersController < ApplicationController
